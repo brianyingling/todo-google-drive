@@ -1,0 +1,16 @@
+.container
+  .row.large-centered
+    .large-12.large-centered.columns
+      %h1 New User
+      = form_for @user, :url => (@user.new_record? ? users_path : user_path(@user) do |f| )
+        = f.label          :first_name
+        = f.text_field     :first_name
+        = f.label          :last_name
+        = f.text_field     :last_name
+        = f.label          :email
+        = f.text_field     :email
+        = f.label          :password
+        = f.password_field :password
+        = f.label          :password_confirmation
+        = f.password_field :password_confirmation
+        = f.submit

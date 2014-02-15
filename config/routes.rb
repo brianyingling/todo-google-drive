@@ -2,6 +2,7 @@ TodoGoogleDrive::Application.routes.draw do
 
   root :to => 'home#index'
 
+  resources :users
   resources :sessions, :only => [:new, :create, :oauth]
 
   get '/oauth'      => 'sessions#oauth',      :as => 'oauth_callback'
