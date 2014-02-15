@@ -1,0 +1,10 @@
+.container
+  .row.large-centered
+    .large-12.large-centered.columns
+      %h1 Login
+      = form_for @session do |f|
+        = f.label          :gmail_address
+        = f.text_field     :gmail_address
+        = f.label          :password
+        = f.password_field :password
+        = f.submit
