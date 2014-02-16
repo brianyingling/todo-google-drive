@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
+  # These were going to be used; but we're redirecting the callback to create() instead
   def oauth_google_callback
     client     = create_google_oauth_client
     auth_token = client.auth_code.get_token params[:code], :redirect_uri => "http://localhost:3000/oauth/google/callback"
@@ -20,6 +21,7 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
+  # These were going to be used; but we're redirecting the callback to create() instead
   def oauth_google
     client   = create_google_oauth_client
     auth_url = client.auth_code.authorize_url google_oauth_auth_params
