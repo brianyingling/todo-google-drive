@@ -2,7 +2,11 @@
 #
 # Table name: sessions
 #
-#  id :integer          not null, primary key
+#  id              :integer          not null, primary key
+#  gmail_address   :string(255)
+#  password_digest :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
 #
 
 class Session < ActiveRecord::Base

@@ -13,6 +13,17 @@ class GoogleDriveService
     'https://www.googleapis.com/auth/userinfo.profile'
   ]
 
+  def self.create_todo(params, todos)
+    binding.pry
+    free_row = todos.num_rows + 1
+    todos[free_row, 1] = params[:todo][:title]
+    todos[free_row, 2] = params[:todo][:description]
+    todos[free_row, 3] = params[:date_created]
+    todos[free_row, 4] = params[:date_due]
+    todos[free_row, 5] = params[:todo][:is_complete]
+    todos.save
+  end
+
   # returns the first worksheet of the 'todos' spreadsheet
   # in google docs
   def self.fetch_todos(token)

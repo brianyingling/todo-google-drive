@@ -1,17 +1,20 @@
 
 %h1 Todos
 - if @todos
+  
   %table
-    - @todos.rows.each do |row|
+    - @todos.rows.each_with_index do |row, i|
+      
       %tr
-      - row.each do |col|
-        %td= col
+        - row.each do |col|
+          %td= col
+
+        / headers should not show edit / delete; only todos
+        - if i > 0
+          %td
+            = link_to "Edit |",   todo_path(i)
+            = link_to "Delete", todo_path(i)
+
 - else
   %p You have no items in your todo list
-/ %h1 Google Files
-/ %ul
-/   - if @items
-/     - @items.each do |item|
-/       %li= item.title 
-/   - else
-/     %p You have no items to display
+= link_to "New Todo", new_todo_path
