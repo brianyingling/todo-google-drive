@@ -11,7 +11,29 @@ class GoogleDriveService
     'https://www.googleapis.com/auth/drive',
     'https://www.googleapis.com/auth/userinfo.email',
     'https://www.googleapis.com/auth/userinfo.profile'
-  ] 
+  ]
+
+  # returns the first worksheet of the 'todos' spreadsheet
+  # in google docs
+  def self.fetch_todos(token)
+    session = GoogleDrive.login_with_oauth token
+    todos   = session.file_by_title 'todos'
+
+    if !todos 
+      todos = session.create_spreadsheet 'todos'
+      ws    = todos.worksheets[0]
+      
+      # create headers
+      ws[1,1] = 'Title'
+      ws[1,2] = 'Description'
+      ws[1,3] = 'DateCreated'
+      ws[1,4] = 'DateDue'
+      ws[1,5] = 'IsComplete'
+      ws.save
+    end
+
+    todos.worksheets[0]
+  end 
   
   def self.fetch_file_list(token)
     client = Google::APIClient.new(

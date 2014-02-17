@@ -1,8 +1,17 @@
 
-%h1 Google Files
-%ul
-  - if @items
-    - @items.each do |item|
-      %li= item.title 
-  - else
-    %p You have no items to display
+%h1 Todos
+- if @todos
+  %table
+    - @todos.rows.each do |row|
+      %tr
+      - row.each do |col|
+        %td= col
+- else
+  %p You have no items in your todo list
+/ %h1 Google Files
+/ %ul
+/   - if @items
+/     - @items.each do |item|
+/       %li= item.title 
+/   - else
+/     %p You have no items to display
